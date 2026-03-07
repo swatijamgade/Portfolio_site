@@ -1,0 +1,557 @@
+# Personal Portfolio Landing Page
+Project Requirements Document (PRD)
+
+---
+
+# 1. Project Overview
+
+Build a **responsive personal portfolio landing page** that showcases a developer's:
+
+- Introduction
+- Background
+- Skills
+- Projects
+- Certifications / Achievements
+- Contact information
+
+The website will act as a **professional digital identity** that can be shared with recruiters, collaborators, and clients.
+
+The project must be implemented as a **static website using HTML, CSS, and JavaScript**.
+
+---
+
+# 2. Goals
+
+The portfolio website should:
+
+- Present the developer professionally
+- Demonstrate frontend development skills
+- Be mobile responsive
+- Have clean and readable code
+- Be deployable as a static website
+- Follow good UI/UX practices
+
+---
+
+# 3. Technology Stack
+
+## Required
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+
+## Optional (Not Required)
+
+- Bootstrap
+- TailwindCSS
+- React
+- Next.js
+- Vue
+
+For this assignment **plain HTML/CSS/JS is recommended**.
+
+---
+
+# 4. Project Structure
+
+The project must follow this structure:
+
+
+portfolio-website/
+│
+├── index.html
+├── style.css
+├── script.js
+│
+├── images/
+│ └── profile.jpg (optional)
+│
+└── README.md
+
+
+---
+
+# 5. Website Sections (Required)
+
+The portfolio must include the following sections **in this order**:
+
+1. Navbar  
+2. Hero Section  
+3. About Section  
+4. Skills Section  
+5. Projects Section  
+6. Certifications / Achievements  
+7. Contact Section  
+8. Footer  
+
+Each section should be implemented using **semantic HTML tags** where possible.
+
+---
+
+# 6. Navigation Bar
+
+## Requirements
+
+The navigation bar should contain:
+
+- Developer name or logo
+- Navigation links to page sections
+
+Example navigation links:
+
+
+Home
+About
+Skills
+Projects
+Contact
+
+
+## Behavior
+
+- Links should scroll to the respective section
+- Navigation must work on mobile devices
+- Mobile view should include a **hamburger menu**
+
+---
+
+# 7. Hero Section
+
+The hero section is the **first visible section**.
+
+## Content
+
+Include:
+
+- Developer name
+- Short professional description
+- Profile image (optional)
+- Call-to-action button
+
+### Example Text
+
+
+Hi, I'm John Doe
+Frontend Developer passionate about building modern web applications.
+
+
+### CTA Button Example
+
+
+View My Work
+
+
+The button should scroll to the **Projects section**.
+
+---
+
+# 8. About Section
+
+This section should describe:
+
+- Developer background
+- Technologies known
+- Interests in software development
+- Career goals
+
+Possible topics:
+
+- Web Development
+- Backend Development
+- AI / Machine Learning
+- Cloud Engineering
+
+The content should be a **short paragraph (4–6 sentences)**.
+
+---
+
+# 9. Skills Section
+
+The skills section should visually present technical skills.
+
+Skills may be grouped into categories.
+
+## Programming Languages
+
+- JavaScript
+- Python
+- Java
+- C++
+
+## Web Technologies
+
+- HTML
+- CSS
+- React
+- Node.js
+
+## Tools
+
+- Git
+- GitHub
+- Docker
+- VS Code
+
+## UI Suggestions
+
+Skills can be displayed using:
+
+- Cards
+- Icons
+- Grid layout
+- Progress bars
+
+Spacing should be clean and consistent.
+
+---
+
+# 10. Projects Section
+
+This section should display **2–3 projects**.
+
+Each project must include:
+
+- Project title
+- Short description
+- Technologies used
+- GitHub link (if available)
+
+### Example
+
+**Weather App**
+
+Description:
+
+
+A web application that fetches weather data from a public weather API.
+
+
+Technologies used:
+
+
+JavaScript
+OpenWeather API
+HTML
+CSS
+
+
+Projects should be displayed as **cards or tiles**.
+
+---
+
+# 11. Certifications / Achievements
+
+This section should include:
+
+- Online certifications
+- Hackathons
+- Coding competitions
+- Professional courses
+
+### Example
+
+
+AWS Cloud Practitioner
+Google Data Analytics Certificate
+Meta Frontend Developer Certification
+
+
+Layout options:
+
+- List
+- Grid
+- Cards
+
+---
+
+# 12. Contact Section
+
+Provide ways for people to reach the developer.
+
+Required contact methods:
+
+- Email
+- GitHub
+- LinkedIn
+
+Example:
+
+
+Email: your@email.com
+
+GitHub: github.com/username
+LinkedIn: linkedin.com/in/username
+
+
+Optional:
+
+- Contact form
+
+---
+
+# 13. Footer
+
+The footer should contain:
+
+
+© 2026 Your Name
+Built with HTML, CSS and JavaScript
+
+
+Footer should be minimal and centered.
+
+---
+
+# 14. Design Requirements
+
+## Responsive Design
+
+The website must work on:
+
+- Mobile devices
+- Tablets
+- Desktop screens
+
+Use **CSS media queries**.
+
+Example breakpoint:
+
+
+768px
+
+
+---
+
+## Typography
+
+Use clean and readable fonts.
+
+Recommended fonts:
+
+- Inter
+- Poppins
+- Roboto
+
+---
+
+## Color Scheme
+
+Use a consistent color palette.
+
+Example palette:
+
+
+Primary: #2563eb
+Background: #f8fafc
+Text: #0f172a
+Accent: #1e293b
+
+
+---
+
+## Layout Principles
+
+The design should include:
+
+- Clear spacing between sections
+- Consistent margins
+- Balanced layout
+- Readable typography
+- Clear visual hierarchy
+
+---
+
+# 15. JavaScript Features (Required)
+
+At least **one interactive feature must be implemented**.
+
+Possible features:
+
+### Smooth Scroll Navigation
+
+Navigation links scroll smoothly to sections.
+
+---
+
+### Mobile Menu Toggle
+
+Hamburger menu opens and closes navigation links.
+
+---
+
+### Scroll Animations
+
+Sections animate when entering the viewport.
+
+---
+
+### Contact Form Validation
+
+Validate form inputs using JavaScript.
+
+---
+
+### Dark Mode Toggle
+
+Allow switching between light and dark themes.
+
+---
+
+# 16. CSS Layout Techniques
+
+The layout should use modern CSS techniques.
+
+Recommended:
+
+## Flexbox
+
+Use Flexbox for:
+
+- Navigation bar
+- Skills section
+- Project cards
+
+Common properties:
+
+
+display: flex
+justify-content
+align-items
+gap
+flex-direction
+
+
+---
+
+## CSS Grid (Optional)
+
+Grid can be used for:
+
+- Skills layout
+- Project gallery
+
+---
+
+# 17. Code Quality Requirements
+
+## HTML
+
+- Use semantic tags where possible
+- Maintain consistent indentation
+- Use meaningful structure
+
+Examples:
+
+<header> <section> <footer> ```
+CSS
+
+Organize CSS logically
+
+Use meaningful class names
+
+Example class names:
+
+.hero-section
+.project-card
+.skill-item
+.contact-section
+JavaScript
+
+Use modern and readable JavaScript.
+
+Examples:
+
+document.querySelector()
+addEventListener()
+classList.toggle()
+
+Code should be easy to understand.
+
+18. Deployment
+
+The website must be deployed online.
+
+Recommended platforms:
+
+GitHub Pages
+
+https://pages.github.com/
+
+Netlify
+
+https://www.netlify.com/
+
+Vercel
+
+https://vercel.com/
+
+Example live URL:
+
+https://username.github.io/portfolio
+19. Deliverables
+
+The final submission must include:
+
+1. GitHub Repository
+
+Repository must contain:
+
+Source code
+
+README.md
+
+Project structure
+
+2. Live Website Link
+
+Example:
+
+https://username.github.io/portfolio
+20. Optional Enhancements
+
+Optional improvements include:
+
+Dark mode
+
+Scroll animations
+
+Hover effects
+
+Animated buttons
+
+Project screenshots
+
+These enhancements can make the portfolio more engaging.
+
+21. Acceptance Criteria
+
+The project will be considered complete when:
+
+All required sections are implemented
+
+Website is responsive
+
+At least one JavaScript interactive feature is included
+
+Code is clean and readable
+
+The website is deployed online
+
+A GitHub repository is provided
+
+22. Estimated Time
+
+Total expected time:
+
+8–10 hours
+
+Typical breakdown:
+
+Planning: 30 minutes
+HTML Structure: 2 hours
+CSS Styling: 3 hours
+Responsive Design: 1.5 hours
+JavaScript Functionality: 1 hour
+Testing: 30 minutes
+Deployment: 30 minutes
