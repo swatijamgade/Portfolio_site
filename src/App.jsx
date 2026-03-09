@@ -3,15 +3,19 @@ import { useEffect, useRef, useState } from "react";
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Achievements", href: "#certifications" },
+  { label: "Achievements", href: "#achievements" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" }
 ];
 
-const skills = [
+const valueStrip = ["Dedication", "Innovation", "Scalability", "Honesty", "Accountability"];
+
+const serviceGroups = [
   {
-    category: "Backend & APIs",
+    category: "Backend API Engineering",
     items: [
       "Python",
       "Django",
@@ -23,36 +27,40 @@ const skills = [
     ]
   },
   {
-    category: "Databases",
-    items: ["PostgreSQL", "MySQL", "SQLite", "Django ORM", "Query Optimization"]
-  },
-  {
-    category: "Asynchronous & Background Processing",
-    items: ["Celery", "Redis"]
-  },
-  {
-    category: "DevOps & Tools",
+    category: "Data & Performance",
     items: [
-      "Docker",
-      "Docker Compose",
-      "Git",
-      "Swagger / OpenAPI",
-      "Postman",
-      "Debugging",
-      "Performance Optimization"
+      "PostgreSQL",
+      "MySQL",
+      "SQLite",
+      "Django ORM",
+      "Query Optimization"
     ]
   },
   {
-    category: "Cloud Deployment (Self-Initiated)",
-    items: ["Oracle Cloud Infrastructure (OCI)", "Dockerised Deployment", "CI/CD Pipelines"]
+    category: "Async Processing",
+    items: ["Celery", "Redis", "Event Workflows", "Background Jobs"]
   },
   {
-    category: "Additional Exposure",
-    items: ["NumPy", "Pandas"]
+    category: "DevOps & Delivery",
+    items: [
+      "Docker",
+      "Docker Compose",
+      "CI/CD Pipelines",
+      "Swagger / OpenAPI",
+      "Postman"
+    ]
   },
   {
-    category: "Development Environment",
-    items: ["Windows", "Ubuntu", "PyCharm", "VS Code"]
+    category: "Cloud Readiness",
+    items: [
+      "Oracle Cloud Infrastructure (OCI)",
+      "Dockerised Deployment",
+      "Environment Hardening"
+    ]
+  },
+  {
+    category: "Engineering Workflow",
+    items: ["Git", "Debugging", "Performance Optimization", "Team Collaboration"]
   }
 ];
 
@@ -63,14 +71,6 @@ const skillLogos = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
   FastAPI:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-  CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-  JavaScript:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   PostgreSQL:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
   MySQL: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
@@ -80,31 +80,19 @@ const skillLogos = {
   "Docker Compose":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
   Git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  GitHub: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-  "VS Code":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   "Swagger / OpenAPI":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg",
   Postman:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
-  Pytest:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg",
   "Django ORM":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
-  NumPy: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
-  Pandas: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
-  Windows:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
-  Ubuntu: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg",
-  PyCharm:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg"
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
 };
 
 const projects = [
   {
     title: "Aurloo - Multi-Vendor E-commerce Platform",
     description:
-      "Developed a production-ready Django backend for customer and seller workflows with secure JWT + OTP auth, catalog/cart/checkout/order APIs, pricing logic (GST, charges), Razorpay payment verification, Shiprocket shipping automation, and Celery/Redis background tasks.",
+      "Built a production-grade Django backend for customer and seller journeys with JWT + OTP auth, GST-aware pricing, payment verification, shipping automation, and Celery/Redis background processing.",
     tech: [
       "Python",
       "Django",
@@ -117,62 +105,231 @@ const projects = [
       "Docker",
       "Swagger/OpenAPI"
     ],
+    outcome:
+      "Automated 3 critical workflows (payments, shipping, and async jobs), reducing manual order handoffs.",
     live: "https://aurloo.com/"
   },
   {
     title: "ClimbCapital - Fintech Platform",
     description:
-      "Built and maintained Django backend APIs for subscription-based investment services with JWT security and Celery/Redis workflows.",
+      "Delivered backend APIs for subscription-driven investment workflows with secure JWT-based auth, robust business logic, and asynchronous processing for time-sensitive jobs.",
     tech: ["Python", "Django", "DRF", "MySQL", "Docker", "Celery", "Redis"],
+    outcome:
+      "Stabilized subscription execution with async processing and reduced failed background-task retries.",
     live: "https://climbcapital.uat.pybex.io/"
   },
   {
     title: "Task Management API",
     description:
-      "Designed REST APIs for task creation, assignment, reminders, and role-based access with optimized query performance.",
-    tech: ["Python", "Django", "DRF", "Celery", "Swagger"]
+      "Designed role-aware task APIs for assignment, reminders, and status lifecycle handling with cleaner query plans and improved response times.",
+    tech: ["Python", "Django", "DRF", "Celery", "Swagger"],
+    outcome:
+      "Improved task-list and reminder endpoint responsiveness with cleaner, optimized query patterns."
   },
   {
     title: "Internal CRM Platform",
     description:
-      "Developed CRM backend to manage leads, customers, and workflows with role-based access and reporting endpoints.",
-    tech: ["Django", "DRF", "PostgreSQL", "Python"]
+      "Developed backend workflows for lead management, customer lifecycle tracking, and reporting endpoints for internal business operations.",
+    tech: ["Django", "DRF", "PostgreSQL", "Python"],
+    outcome:
+      "Unified lead and customer lifecycle data into one workflow, reducing duplicate operational tracking."
   }
 ];
 
 const certifications = [
   {
-    title: "Django Developer Certification - OccupIQ Institute (Completed 2021)",
+    title: "Django Developer Certification - OccupyQ Institute",
     details: [
-      "Completed training in backend web development using Django and Python.",
-      "Covered REST API development, authentication, database design, and deployment.",
-      "Built multiple backend applications using Django REST Framework."
+      "Completed advanced backend training in Django and Python.",
+      "Covered API architecture, auth systems, and database design.",
+      "Built multiple real-world projects with Django REST Framework."
     ]
   },
   {
-    title:
-      "Full Stack Web Development Certification - OccupIQ Institute (Completed 2021)",
+    title: "Full Stack Web Development Certification - OccupyQ Institute",
     details: [
-      "Learned frontend technologies including HTML, CSS, JavaScript, and React.",
-      "Integrated frontend applications with backend APIs built using Django.",
-      "Developed end-to-end full-stack applications including authentication, CRUD operations, and API integrations."
+      "Learned frontend and backend integration patterns.",
+      "Implemented full-stack products with authentication and CRUD workflows.",
+      "Connected React clients with API-first Django services."
     ]
   }
 ];
 
 const achievements = [
-  "Built and deployed multiple production web applications using Django and Django REST Framework.",
-  "Developed scalable backend systems with background processing using Celery and caching with Redis.",
-  "Successfully delivered fintech and SaaS backend platforms used by real users.",
-  "Designed secure REST APIs with authentication and documentation using Swagger UI and Postman."
+  "Built and deployed production applications serving real users.",
+  "Implemented secure and scalable API systems with background processing.",
+  "Delivered backend systems for fintech and e-commerce domains.",
+  "Created API documentation pipelines with Swagger and Postman."
 ];
+
+const faqs = [
+  {
+    question: "What kind of projects do you usually work on?",
+    answer:
+      "I primarily work on backend-heavy products such as e-commerce, fintech, and internal business platforms where API quality, performance, and reliability are critical."
+  },
+  {
+    question: "Do you handle deployment and DevOps setup?",
+    answer:
+      "Yes. I can support Docker-based deployment, environment setup, CI/CD integration, and production hardening for Python backend services."
+  },
+  {
+    question: "Can you work with existing codebases?",
+    answer:
+      "Absolutely. Most of my commercial work has involved reading existing systems quickly, improving architecture, and shipping safe enhancements under deadlines."
+  },
+  {
+    question: "Are you open to remote collaboration?",
+    answer:
+      "Yes. I am available for remote opportunities and comfortable collaborating asynchronously with product, design, and engineering teams."
+  }
+];
+
+const impactStats = [
+  { label: "Commercial Experience", value: "3+ Years" },
+  { label: "Production Projects", value: "10+" },
+  { label: "Core Stack", value: "Python · Django · DRF" }
+];
+
+const rolePills = [
+  "Backend Engineer",
+  "Full Stack Developer",
+  "API Specialist",
+  "Django Developer"
+];
+
+const journeySteps = [
+  {
+    period: "2021",
+    title: "Structured Technical Training",
+    details:
+      "Completed focused certification programs in Django and full stack development with practical project delivery."
+  },
+  {
+    period: "2022",
+    title: "Backend Career Transition",
+    details:
+      "Moved intentionally into professional backend engineering, focusing on APIs, workflows, and automation."
+  },
+  {
+    period: "2023 - Present",
+    title: "Commercial Product Delivery",
+    details:
+      "Built and maintained production systems across e-commerce, fintech, and internal business platforms."
+  }
+];
+
+const contactLinks = [
+  {
+    label: "Email",
+    value: "jamgade.swati@gmail.com",
+    href: "mailto:jamgade.swati@gmail.com"
+  },
+  {
+    label: "Phone",
+    value: "+44 7442262743",
+    href: "tel:+447442262743"
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/swati-jamgade",
+    href: "https://www.linkedin.com/in/swati-jamgade"
+  },
+  {
+    label: "GitHub",
+    value: "github.com/swatijamgade",
+    href: "https://github.com/swatijamgade"
+  }
+];
+
+const initialContactForm = {
+  name: "",
+  email: "",
+  message: ""
+};
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    try {
+      const savedTheme = window.localStorage.getItem("portfolio-theme");
+      if (savedTheme === "dark") {
+        return true;
+      }
+      if (savedTheme === "light") {
+        return false;
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    } catch {
+      return false;
+    }
+  });
+  const [contactForm, setContactForm] = useState(initialContactForm);
+  const [formErrors, setFormErrors] = useState({});
+  const [formSuccess, setFormSuccess] = useState("");
   const revealRefs = useRef([]);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  const validateContactForm = (values) => {
+    const errors = {};
+    const trimmedName = values.name.trim();
+    const trimmedEmail = values.email.trim();
+    const trimmedMessage = values.message.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    if (!trimmedName) {
+      errors.name = "Please enter your name.";
+    } else if (trimmedName.length < 2) {
+      errors.name = "Name should be at least 2 characters.";
+    }
+
+    if (!trimmedEmail) {
+      errors.email = "Please enter your email address.";
+    } else if (!emailPattern.test(trimmedEmail)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!trimmedMessage) {
+      errors.message = "Please enter a message.";
+    } else if (trimmedMessage.length < 20) {
+      errors.message = "Message should be at least 20 characters.";
+    }
+
+    return errors;
+  };
+
+  const handleContactInputChange = (event) => {
+    const { name, value } = event.target;
+    setContactForm((prev) => ({ ...prev, [name]: value }));
+
+    if (formErrors[name]) {
+      setFormErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    }
+  };
+
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+    const errors = validateContactForm(contactForm);
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      setFormSuccess("");
+      return;
+    }
+
+    setFormSuccess("Thank you. Your message is ready to send.");
+    setContactForm(initialContactForm);
+  };
+
   const setRevealRef = (element) => {
     if (element && !revealRefs.current.includes(element)) {
       revealRefs.current.push(element);
@@ -180,7 +337,12 @@ function App() {
   };
 
   useEffect(() => {
-    document.body.classList.toggle("dark", isDark);
+    document.body.classList.toggle("theme-dark", isDark);
+    try {
+      window.localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+    } catch {
+      // Ignore storage failures and keep in-memory theme state.
+    }
   }, [isDark]);
 
   useEffect(() => {
@@ -193,43 +355,26 @@ function App() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
 
     revealRefs.current.forEach((element) => observer.observe(element));
+
     return () => observer.disconnect();
   }, []);
 
   return (
-    <>
-      <header className="site-header" id="home">
+    <div className="page-shell" id="home">
+      <header className="site-header">
+        <div className="value-strip">
+          <p>{valueStrip.join(" | ")}</p>
+        </div>
+
         <nav className="nav" aria-label="Main navigation">
           <a href="#home" className="brand" onClick={closeMenu}>
-            Swati Jamgade
+            <span className="brand-main">Swati Jamgade</span>
+            <span className="brand-sub">Backend & Full Stack Developer Portfolio</span>
           </a>
-
-          <div className="nav-actions">
-            <button
-              type="button"
-              className="theme-toggle"
-              aria-label="Toggle dark mode"
-              onClick={() => setIsDark((prev) => !prev)}
-            >
-              {isDark ? "Light" : "Dark"}
-            </button>
-
-            <button
-              type="button"
-              className="menu-toggle"
-              aria-expanded={isMenuOpen}
-              aria-controls="primary-navigation"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-            >
-              <span className="menu-bar"></span>
-              <span className="menu-bar"></span>
-              <span className="menu-bar"></span>
-            </button>
-          </div>
 
           <ul
             id="primary-navigation"
@@ -243,54 +388,151 @@ function App() {
               </li>
             ))}
           </ul>
+
+          <div className="nav-controls">
+            <button
+              type="button"
+              className="theme-toggle"
+              aria-label="Toggle dark mode"
+              onClick={() => setIsDark((prev) => !prev)}
+            >
+              {isDark ? "Light" : "Dark"} Mode
+            </button>
+
+            <a href="#contact" className="header-cta" onClick={closeMenu}>
+              Get In Touch
+            </a>
+
+            <button
+              type="button"
+              className="menu-toggle"
+              aria-expanded={isMenuOpen}
+              aria-controls="primary-navigation"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+            >
+              <span className="menu-bar"></span>
+              <span className="menu-bar"></span>
+              <span className="menu-bar"></span>
+            </button>
+          </div>
         </nav>
       </header>
 
       <main>
         <section id="hero" className="section hero reveal" ref={setRevealRef}>
-          <div className="hero-content">
-            <h1>Hi, I&apos;m Swati Jamgade</h1>
-            <p>Full Stack Developer</p>
-            <a href="#projects" className="btn">
-              View My Work
-            </a>
+          <div className="hero-copy">
+            <div className="hero-identity">
+              <div className="hero-avatar-placeholder" aria-hidden="true"></div>
+              <div>
+                <p className="hero-name">Swati Jamgade</p>
+                <p className="hero-role">Backend Engineer | Full Stack Developer</p>
+              </div>
+            </div>
+            <p className="eyebrow">API-First Engineering for High-Impact Products</p>
+            <h1>Reliable backend systems, shipped fast.</h1>
+            <p className="hero-text">
+              I help teams ship secure, scalable Django services and workflow automation for
+              products that need performance, maintainability, and fast delivery.
+            </p>
+            <p className="availability-line">
+              Based in the UK | Open to remote and hybrid software engineering roles.
+            </p>
+            <ul className="role-pill-list" aria-label="Professional roles">
+              {rolePills.map((role) => (
+                <li key={role}>{role}</li>
+              ))}
+            </ul>
+
+            <div className="hero-actions">
+              <a
+                href="https://www.linkedin.com/in/swati-jamgade"
+                target="_blank"
+                rel="noreferrer"
+                className="btn"
+              >
+                Download Resume
+              </a>
+              <a href="#projects" className="btn btn-outline">
+                View Projects
+              </a>
+              <a href="#contact" className="btn btn-ghost">
+                Contact Me
+              </a>
+            </div>
+
+            <ul className="impact-list" aria-label="Professional impact stats">
+              {impactStats.map((item) => (
+                <li key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="hero-media">
+
+          <aside className="hero-panel">
             <img
-              src="https://images.pexels.com/photos/5496459/pexels-photo-5496459.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Person typing on a laptop"
+              src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Developer writing backend code"
               className="hero-image"
               loading="lazy"
             />
-          </div>
+            <div className="hero-panel-content">
+              <h2>What You Can Expect</h2>
+              <ul>
+                <li>Clean API architecture and thoughtful data models</li>
+                <li>Production-ready workflows with async processing</li>
+                <li>Deployment support and strong engineering communication</li>
+              </ul>
+            </div>
+          </aside>
         </section>
 
         <section id="about" className="section reveal" ref={setRevealRef}>
-          <h2>About Me</h2>
-          <p>
-            Strategy-driven Backend Engineer with 3+ years of commercial experience
-            delivering API-driven, customer-facing applications using Python, Django,
-            REST APIs, and SQL. I am experienced in translating user stories into
-            scalable technical solutions, supporting digitalisation initiatives, and
-            delivering under tight deadlines. My background includes teaching and
-            technical roles, followed by a planned maternity break. In early 2022,
-            I deliberately transitioned into backend development by completing
-            structured training in Python and automation before moving into
-            professional software engineering roles. I am strong in API integration,
-            workflow automation, and cloud-deployed systems, with a collaborative
+          <div className="section-heading">
+            <p>About</p>
+            <h2>A portfolio focused on backend quality, business outcomes, and collaboration.</h2>
+          </div>
+
+          <p className="about-text">
+            Strategy-driven Backend Engineer and Full Stack Developer with 3+ years of
+            commercial experience delivering API-driven, customer-facing applications using
+            Python, Django, REST APIs, and SQL. Experienced in translating user stories into
+            scalable technical solutions, supporting digitalisation initiatives, and delivering
+            under tight deadlines. My background includes teaching and technical roles,
+            followed by a planned maternity break. In early 2022, I deliberately transitioned
+            into backend development, completing structured training in Python and automation
+            before moving into professional software engineering roles. Strong in API
+            integration, workflow automation, and cloud-deployed systems, with a collaborative
             and stakeholder-focused approach.
           </p>
         </section>
 
+        <section id="experience" className="section reveal" ref={setRevealRef}>
+          <div className="section-heading">
+            <p>Experience Journey</p>
+            <h2>How I moved into engineering and built production-ready systems.</h2>
+          </div>
+          <ol className="journey-list">
+            {journeySteps.map((step) => (
+              <li key={step.period} className="journey-card reveal" ref={setRevealRef}>
+                <p className="journey-period">{step.period}</p>
+                <h3>{step.title}</h3>
+                <p>{step.details}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         <section id="skills" className="section reveal" ref={setRevealRef}>
-          <h2>Skills</h2>
-          <div className="skills-grid">
-            {skills.map((group) => (
-              <article
-                key={group.category}
-                className="card reveal"
-                ref={setRevealRef}
-              >
+          <div className="section-heading">
+            <p>Skills</p>
+            <h2>Technical skills and tools I use to build software.</h2>
+          </div>
+
+          <div className="service-grid">
+            {serviceGroups.map((group) => (
+              <article key={group.category} className="service-card reveal" ref={setRevealRef}>
                 <h3>{group.category}</h3>
                 <ul className="skill-list">
                   {group.items.map((item) => {
@@ -305,10 +547,7 @@ function App() {
                             loading="lazy"
                           />
                         ) : (
-                          <span
-                            className="skill-logo-fallback"
-                            aria-hidden="true"
-                          >
+                          <span className="skill-logo-fallback" aria-hidden="true">
                             ●
                           </span>
                         )}
@@ -323,27 +562,27 @@ function App() {
         </section>
 
         <section id="projects" className="section reveal" ref={setRevealRef}>
-          <h2>Projects</h2>
-          <div className="projects-grid">
+          <div className="section-heading">
+            <p>Projects</p>
+            <h2>Selected work across e-commerce, fintech, and SaaS systems.</h2>
+          </div>
+
+          <div className="project-grid">
             {projects.map((project) => (
-              <article
-                key={project.title}
-                className="card project-card reveal"
-                ref={setRevealRef}
-              >
+              <article key={project.title} className="project-card reveal" ref={setRevealRef}>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-                <p>
-                  <strong>Technologies:</strong> {project.tech.join(", ")}
+                <p className="project-outcome">
+                  <strong>Impact:</strong> {project.outcome}
                 </p>
+                <ul className="tag-list" aria-label={`Technologies used for ${project.title}`}>
+                  {project.tech.map((tool) => (
+                    <li key={`${project.title}-${tool}`}>{tool}</li>
+                  ))}
+                </ul>
                 {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-link"
-                  >
-                    Live Website
+                  <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
+                    Visit Live Website
                   </a>
                 ) : null}
               </article>
@@ -351,81 +590,165 @@ function App() {
           </div>
         </section>
 
-        <section
-          id="certifications"
-          className="section reveal"
-          ref={setRevealRef}
-        >
-          <h2>Certifications / Achievements</h2>
-          <h3 className="subsection-title">Certifications</h3>
-          <ul className="card-list">
-            {certifications.map((certification) => (
-              <li
-                key={certification.title}
-                className="card cert-card reveal"
-                ref={setRevealRef}
-              >
-                <p className="cert-title">{certification.title}</p>
-                <ul className="cert-detail-list">
-                  {certification.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+        <section id="achievements" className="section reveal" ref={setRevealRef}>
+          <div className="section-heading">
+            <p>Achievements</p>
+            <h2>Certifications and delivery highlights.</h2>
+          </div>
 
-          <h3 className="subsection-title">Achievements</h3>
-          <ul className="card-list">
-            {achievements.map((item) => (
-              <li key={item} className="card reveal" ref={setRevealRef}>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="achievement-grid">
+            <article className="achievement-card reveal" ref={setRevealRef}>
+              <h3>Certifications</h3>
+              <ul className="cert-list">
+                {certifications.map((certification) => (
+                  <li key={certification.title}>
+                    <p className="cert-title">{certification.title}</p>
+                    <ul className="cert-detail-list">
+                      {certification.details.map((detail) => (
+                        <li key={`${certification.title}-${detail}`}>{detail}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="achievement-card reveal" ref={setRevealRef}>
+              <h3>Professional Highlights</h3>
+              <ul className="highlight-list">
+                {achievements.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
         </section>
 
-        <section id="contact" className="section reveal" ref={setRevealRef}>
-          <h2>Contact</h2>
-          <ul className="card-list">
-            <li className="card reveal" ref={setRevealRef}>
-              Email:{" "}
-              <a href="mailto:jamgade.swati@gmail.com">
-                jamgade.swati@gmail.com
+        <section id="faq" className="section reveal" ref={setRevealRef}>
+          <div className="section-heading">
+            <p>FAQ</p>
+            <h2>Common questions from clients and teams.</h2>
+          </div>
+
+          <div className="faq-grid">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="faq-item reveal" ref={setRevealRef}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="section contact-section reveal" ref={setRevealRef}>
+          <div className="section-heading">
+            <p>Contact</p>
+            <h2>Let&apos;s build something reliable together.</h2>
+          </div>
+
+          <div className="contact-grid">
+            <ul className="contact-list">
+              {contactLinks.map((item) => (
+                <li key={item.label}>
+                  <span>{item.label}</span>
+                  <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                    {item.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <article className="contact-card">
+              <h3>Open To Opportunities</h3>
+              <p>
+                Available for backend engineering roles and project-based collaborations
+                focused on API design, platform reliability, and workflow automation.
+              </p>
+
+              <form className="contact-form" onSubmit={handleContactSubmit} noValidate>
+                <div className="form-group">
+                  <label htmlFor="contact-name" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    value={contactForm.name}
+                    onChange={handleContactInputChange}
+                    className={`form-input ${formErrors.name ? "is-error" : ""}`}
+                    aria-invalid={Boolean(formErrors.name)}
+                    aria-describedby={formErrors.name ? "contact-name-error" : undefined}
+                  />
+                  {formErrors.name ? (
+                    <p id="contact-name-error" className="form-error">
+                      {formErrors.name}
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="contact-email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={contactForm.email}
+                    onChange={handleContactInputChange}
+                    className={`form-input ${formErrors.email ? "is-error" : ""}`}
+                    aria-invalid={Boolean(formErrors.email)}
+                    aria-describedby={formErrors.email ? "contact-email-error" : undefined}
+                  />
+                  {formErrors.email ? (
+                    <p id="contact-email-error" className="form-error">
+                      {formErrors.email}
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="contact-message" className="form-label">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={4}
+                    value={contactForm.message}
+                    onChange={handleContactInputChange}
+                    className={`form-input form-textarea ${formErrors.message ? "is-error" : ""}`}
+                    aria-invalid={Boolean(formErrors.message)}
+                    aria-describedby={formErrors.message ? "contact-message-error" : undefined}
+                  ></textarea>
+                  {formErrors.message ? (
+                    <p id="contact-message-error" className="form-error">
+                      {formErrors.message}
+                    </p>
+                  ) : null}
+                </div>
+
+                <button type="submit" className="btn contact-submit">
+                  Validate Message
+                </button>
+              </form>
+
+              {formSuccess ? <p className="form-success">{formSuccess}</p> : null}
+
+              <a href="mailto:jamgade.swati@gmail.com" className="btn btn-outline">
+                Email Me Directly
               </a>
-            </li>
-            <li className="card reveal" ref={setRevealRef}>
-              Phone: <a href="tel:+447442262743">+44 7442262743</a>
-            </li>
-            <li className="card reveal" ref={setRevealRef}>
-              LinkedIn:{" "}
-              <a
-                href="https://www.linkedin.com/in/swati-jamgade"
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin.com/in/swati-jamgade
-              </a>
-            </li>
-            <li className="card reveal" ref={setRevealRef}>
-              GitHub:{" "}
-              <a
-                href="https://github.com/swatijamgade"
-                target="_blank"
-                rel="noreferrer"
-              >
-                github.com/swatijamgade
-              </a>
-            </li>
-          </ul>
+            </article>
+          </div>
         </section>
       </main>
 
       <footer className="footer">
         <p>© 2026 Swati Jamgade</p>
-        <p>Built with React</p>
+        <p>Built with React, HTML, CSS, and JavaScript</p>
       </footer>
-    </>
+    </div>
   );
 }
 
