@@ -381,10 +381,7 @@ function App() {
         <nav className="nav" aria-label="Main navigation">
           <a href="#home" className="brand" onClick={closeMenu}>
             <span className="brand-main">Swati Jamgade</span>
-            <span className="brand-sub">
-              Full-Stack Developer | PYTHON | DJANGO | FastAPI Expert | Creating Scalable
-              Solution
-            </span>
+            <span className="brand-sub">Full-Stack Developer</span>
           </a>
 
           <ul
