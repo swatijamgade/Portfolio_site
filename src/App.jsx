@@ -119,20 +119,28 @@ const projects = [
     live: "https://climbcapital.uat.pybex.io/"
   },
   {
+    title: "Lynkist - WhatsApp Business CRM Platform",
+    description:
+      "Built API workflows for a WhatsApp Business CRM covering real-time chat, contact organization, template messaging, and analytics with a multi-tenant architecture.",
+    tech: [
+      "Python",
+      "Django",
+      "DRF",
+      "WhatsApp Business API",
+      "Multi-Tenant SaaS",
+      "Campaign Analytics"
+    ],
+    outcome:
+      "Enabled scalable customer messaging operations with tenant isolation and measurable improvements in campaign tracking and response handling.",
+    live: "https://lynkist.io/"
+  },
+  {
     title: "Task Management API",
     description:
       "Designed role-aware task APIs for assignment, reminders, and status lifecycle handling with cleaner query plans and improved response times.",
     tech: ["Python", "Django", "DRF", "Celery", "Swagger"],
     outcome:
       "Improved task-list and reminder endpoint responsiveness with cleaner, optimized query patterns."
-  },
-  {
-    title: "Internal CRM Platform",
-    description:
-      "Developed backend workflows for lead management, customer lifecycle tracking, and reporting endpoints for internal business operations.",
-    tech: ["Django", "DRF", "PostgreSQL", "Python"],
-    outcome:
-      "Unified lead and customer lifecycle data into one workflow, reducing duplicate operational tracking."
   }
 ];
 
@@ -373,7 +381,10 @@ function App() {
         <nav className="nav" aria-label="Main navigation">
           <a href="#home" className="brand" onClick={closeMenu}>
             <span className="brand-main">Swati Jamgade</span>
-            <span className="brand-sub">Backend & Full Stack Developer Portfolio</span>
+            <span className="brand-sub">
+              Full-Stack Developer | PYTHON | DJANGO | FastAPI Expert | Creating Scalable
+              Solution
+            </span>
           </a>
 
           <ul
@@ -421,13 +432,6 @@ function App() {
       <main>
         <section id="hero" className="section hero reveal" ref={setRevealRef}>
           <div className="hero-copy">
-            <div className="hero-identity">
-              <div className="hero-avatar-placeholder" aria-hidden="true"></div>
-              <div>
-                <p className="hero-name">Swati Jamgade</p>
-                <p className="hero-role">Backend Engineer | Full Stack Developer</p>
-              </div>
-            </div>
             <p className="eyebrow">API-First Engineering for High-Impact Products</p>
             <h1>Reliable backend systems, shipped fast.</h1>
             <p className="hero-text">
@@ -488,23 +492,26 @@ function App() {
           </aside>
         </section>
 
-        <section id="about" className="section reveal" ref={setRevealRef}>
+        <section id="about" className="section about-section reveal" ref={setRevealRef}>
           <div className="section-heading">
-            <p>About</p>
-            <h2>A portfolio focused on backend quality, business outcomes, and collaboration.</h2>
+            <h2>About Me</h2>
           </div>
 
           <p className="about-text">
-            Strategy-driven Backend Engineer and Full Stack Developer with 3+ years of
-            commercial experience delivering API-driven, customer-facing applications using
-            Python, Django, REST APIs, and SQL. Experienced in translating user stories into
-            scalable technical solutions, supporting digitalisation initiatives, and delivering
-            under tight deadlines. My background includes teaching and technical roles,
-            followed by a planned maternity break. In early 2022, I deliberately transitioned
-            into backend development, completing structured training in Python and automation
-            before moving into professional software engineering roles. Strong in API
-            integration, workflow automation, and cloud-deployed systems, with a collaborative
-            and stakeholder-focused approach.
+            I am a Backend Engineer and Full-Stack Developer with 3+ years of experience
+            building API-driven applications using Python, Django, REST APIs, and SQL.
+            Currently, I work as a Software Engineer at Pybex Technologies, where I develop and
+            maintain backend systems, API integrations, and scalable web applications that
+            support business-critical platforms. I specialize in designing efficient backend
+            architectures, integrating third-party services, and translating business
+            requirements into reliable technical solutions. My work focuses on clean,
+            maintainable code and scalable system design. In 2022, I transitioned into backend
+            development, completing structured training in Python and automation before moving
+            into professional software engineering roles. Since then, I have contributed to
+            production applications involving API integrations, workflow automation, and
+            cloud-deployed systems. I enjoy collaborating with cross-functional teams, solving
+            complex backend problems, and building technology that delivers real business
+            outcomes.
           </p>
         </section>
 
@@ -745,8 +752,64 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© 2026 Swati Jamgade</p>
-        <p>Built with React, HTML, CSS, and JavaScript</p>
+        <div className="footer-inner">
+          <div className="footer-branding">
+            <span className="footer-mark" aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img" focusable="false">
+                <path d="M16 4h8v12h12v8H24v12h-8V24H4v-8h12z"></path>
+              </svg>
+            </span>
+            <div className="footer-copy">
+              <p className="footer-title">© 2026 Swati Jamgade</p>
+              <p className="footer-subtitle">Built with React, JavaScript & CSS</p>
+            </div>
+          </div>
+
+          <div className="footer-socials" aria-label="Social links">
+            <a
+              href="https://github.com/swatijamgade"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-social-link"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path
+                  d="M12 1.8A10.2 10.2 0 0 0 8.8 21.7c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.8 1.1 1.8 1.1 1 .1.6 2.7 3.3 2 .1-.8.4-1.3.7-1.6-2.3-.3-4.7-1.2-4.7-5a3.9 3.9 0 0 1 1.1-2.7 3.7 3.7 0 0 1 .1-2.7s.9-.3 3 1.1a10.3 10.3 0 0 1 5.5 0c2.1-1.4 3-1.1 3-1.1a3.7 3.7 0 0 1 .1 2.7 3.8 3.8 0 0 1 1.1 2.7c0 3.8-2.4 4.7-4.7 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.2 10.2 0 0 0 12 1.8z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/swati-jamgade"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-social-link"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path
+                  d="M6.9 8.4A1.9 1.9 0 1 1 7 4.6a1.9 1.9 0 0 1-.1 3.8zM5.4 9.8h3v9.7h-3V9.8zm4.7 0h2.9v1.3h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7v5.3h-3v-4.7c0-1.1 0-2.5-1.6-2.5s-1.8 1.2-1.8 2.4v4.8h-3V9.8z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </a>
+
+            <a
+              href="mailto:jamgade.swati@gmail.com"
+              className="footer-social-link"
+              aria-label="Email"
+            >
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path
+                  d="M4 6.5C4 5.1 5.1 4 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11zm2 0v.3l5.8 4.4a.5.5 0 0 0 .4.1.5.5 0 0 0 .4-.1L18 6.8v-.3c0-.3-.2-.5-.5-.5h-11c-.3 0-.5.2-.5.5zm12 2.8-4.1 3.1a2.5 2.5 0 0 1-3 0L6 9.3v8.2c0 .3.2.5.5.5h11c.3 0 .5-.2.5-.5V9.3z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );
