@@ -255,6 +255,7 @@ const initialContactForm = {
   email: "",
   message: ""
 };
+const contactEmail = "jamgade.swati@gmail.com";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -304,8 +305,8 @@ function App() {
 
     if (!trimmedMessage) {
       errors.message = "Please enter a message.";
-    } else if (trimmedMessage.length < 20) {
-      errors.message = "Message should be at least 20 characters.";
+    } else if (trimmedMessage.length < 10) {
+      errors.message = "Message should be at least 10 characters.";
     }
 
     return errors;
@@ -314,6 +315,9 @@ function App() {
   const handleContactInputChange = (event) => {
     const { name, value } = event.target;
     setContactForm((prev) => ({ ...prev, [name]: value }));
+    if (formSuccess) {
+      setFormSuccess("");
+    }
 
     if (formErrors[name]) {
       setFormErrors((prev) => {
@@ -334,8 +338,31 @@ function App() {
       return;
     }
 
-    setFormSuccess("Thank you. Your message is ready to send.");
-    setContactForm(initialContactForm);
+    const trimmedName = contactForm.name.trim();
+    const trimmedEmail = contactForm.email.trim();
+    const trimmedMessage = contactForm.message.trim();
+    const subjectText = `Portfolio inquiry from ${trimmedName}`;
+    const bodyText = `Hello Swati,\n\nName: ${trimmedName}\nEmail: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}\n`;
+    const subject = encodeURIComponent(subjectText);
+    const body = encodeURIComponent(bodyText);
+    const mailtoLink = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    const gmailParams = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: contactEmail,
+      su: subjectText,
+      body: bodyText
+    });
+    const gmailComposeLink = `https://mail.google.com/mail/?${gmailParams.toString()}`;
+
+    const popup = window.open(gmailComposeLink, "_blank", "noopener,noreferrer");
+    if (!popup) {
+      window.location.href = mailtoLink;
+    }
+
+    setFormSuccess(
+      "Composer opened. If nothing appears, use the 'Email Me Directly' button below."
+    );
   };
 
   const setRevealRef = (element) => {
@@ -379,11 +406,6 @@ function App() {
         </div>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#home" className="brand" onClick={closeMenu}>
-            <span className="brand-main">Swati Jamgade</span>
-            <span className="brand-sub">Full-Stack Developer</span>
-          </a>
-
           <ul
             id="primary-navigation"
             className={`nav-links ${isMenuOpen ? "is-open" : ""}`}
@@ -401,10 +423,45 @@ function App() {
             <button
               type="button"
               className="theme-toggle"
-              aria-label="Toggle dark mode"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
               onClick={() => setIsDark((prev) => !prev)}
             >
-              {isDark ? "Light" : "Dark"} Mode
+              {isDark ? (
+                <svg
+                  className="theme-toggle-icon"
+                  viewBox="0 0 24 24"
+                  role="img"
+                  focusable="false"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+                  <path
+                    d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  ></path>
+                </svg>
+              ) : (
+                <svg
+                  className="theme-toggle-icon"
+                  viewBox="0 0 24 24"
+                  role="img"
+                  focusable="false"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="7.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  ></circle>
+                  <path d="M12 4.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"></path>
+                </svg>
+              )}
             </button>
 
             <a href="#contact" className="header-cta" onClick={closeMenu}>
@@ -429,64 +486,24 @@ function App() {
       <main>
         <section id="hero" className="section hero reveal" ref={setRevealRef}>
           <div className="hero-copy">
-            <p className="eyebrow">API-First Engineering for High-Impact Products</p>
-            <h1>Reliable backend systems, shipped fast.</h1>
+            <p className="eyebrow">SOFTWARE ENGINEER · LONDON, UK</p>
+            <h1>
+              Hi, I&apos;m <span className="hero-title-accent">Swati Jamgade</span>
+            </h1>
+            <p className="hero-subtitle">Backend Engineer | Full-Stack Web Developer</p>
             <p className="hero-text">
-              I help teams ship secure, scalable Django services and workflow automation for
-              products that need performance, maintainability, and fast delivery.
+              Building web applications with Python/Django, REST APIs, JavaScript, and SQL,
+              crafting clean, responsive, and secure digital experiences.
             </p>
-            <p className="availability-line">
-              Based in the UK | Open to remote and hybrid software engineering roles.
-            </p>
-            <ul className="role-pill-list" aria-label="Professional roles">
-              {rolePills.map((role) => (
-                <li key={role}>{role}</li>
-              ))}
-            </ul>
-
             <div className="hero-actions">
-              <a
-                href="https://www.linkedin.com/in/swati-jamgade"
-                target="_blank"
-                rel="noreferrer"
-                className="btn"
-              >
-                Download Resume
+              <a href="#projects" className="btn">
+                View My Work
               </a>
-              <a href="#projects" className="btn btn-outline">
-                View Projects
-              </a>
-              <a href="#contact" className="btn btn-ghost">
+              <a href="#contact" className="btn btn-outline">
                 Contact Me
               </a>
             </div>
-
-            <ul className="impact-list" aria-label="Professional impact stats">
-              {impactStats.map((item) => (
-                <li key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </li>
-              ))}
-            </ul>
           </div>
-
-          <aside className="hero-panel">
-            <img
-              src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Developer writing backend code"
-              className="hero-image"
-              loading="lazy"
-            />
-            <div className="hero-panel-content">
-              <h2>What You Can Expect</h2>
-              <ul>
-                <li>Clean API architecture and thoughtful data models</li>
-                <li>Production-ready workflows with async processing</li>
-                <li>Deployment support and strong engineering communication</li>
-              </ul>
-            </div>
-          </aside>
         </section>
 
         <section id="about" className="section about-section reveal" ref={setRevealRef}>
@@ -678,6 +695,7 @@ function App() {
                     id="contact-name"
                     type="text"
                     name="name"
+                    placeholder="Your name"
                     value={contactForm.name}
                     onChange={handleContactInputChange}
                     className={`form-input ${formErrors.name ? "is-error" : ""}`}
@@ -699,6 +717,7 @@ function App() {
                     id="contact-email"
                     type="email"
                     name="email"
+                    placeholder="you@example.com"
                     value={contactForm.email}
                     onChange={handleContactInputChange}
                     className={`form-input ${formErrors.email ? "is-error" : ""}`}
@@ -720,6 +739,7 @@ function App() {
                     id="contact-message"
                     name="message"
                     rows={4}
+                    placeholder="Write your message here..."
                     value={contactForm.message}
                     onChange={handleContactInputChange}
                     className={`form-input form-textarea ${formErrors.message ? "is-error" : ""}`}
@@ -734,13 +754,13 @@ function App() {
                 </div>
 
                 <button type="submit" className="btn contact-submit">
-                  Validate Message
+                  Send Message
                 </button>
               </form>
 
               {formSuccess ? <p className="form-success">{formSuccess}</p> : null}
 
-              <a href="mailto:jamgade.swati@gmail.com" className="btn btn-outline">
+              <a href={`mailto:${contactEmail}`} className="btn btn-outline">
                 Email Me Directly
               </a>
             </article>
