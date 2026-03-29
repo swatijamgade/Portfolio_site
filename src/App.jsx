@@ -141,6 +141,24 @@ const projects = [
     tech: ["Python", "Django", "DRF", "Celery", "Swagger"],
     outcome:
       "Improved task-list and reminder endpoint responsiveness with cleaner, optimized query patterns."
+  },
+  {
+    title: "Telecom Intelligence Platform",
+    description:
+      "Built a responsive frontend platform for telecom reporting with clear KPI visualization, trend tracking, and performance-focused dashboard layouts.",
+    tech: ["React", "JavaScript", "Vite", "Analytics Dashboard"],
+    outcome:
+      "Made telecom insights easier to monitor by centralizing key metrics in a single live interface.",
+    live: "https://telecom-intelligence-platformfronte.vercel.app/"
+  },
+  {
+    title: "Call Analytics Dashboard",
+    description:
+      "Developed a call analytics interface for monitoring call volume, quality indicators, and operational trends through interactive visual summaries.",
+    tech: ["React", "JavaScript", "Vite", "Data Visualization"],
+    outcome:
+      "Improved visibility into call-performance trends with fast access to actionable dashboard metrics.",
+    live: "https://call-analytics-dashboard-tau.vercel.app/"
   }
 ];
 
